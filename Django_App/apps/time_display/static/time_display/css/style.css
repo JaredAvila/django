@@ -1,0 +1,23 @@
+body{
+    background-color: gray;
+}
+
+div{
+    width: fit-content;
+    margin: auto;
+}
+
+h1, h2{
+    color: purple;
+    border: 1px solid white;
+    padding: 20px 100px;
+    border-radius: 10px;
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 35px;
+}
+
+h1{
+    font-size: 56pt;
+}
