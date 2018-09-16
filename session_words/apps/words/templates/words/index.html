@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <style>
+        body{
+            background: url("{% static 'words/images/blacknwhite.jpg' %}");
+            background-size: 100%;
+            
+        }
+        .container{
+            display: flex;
+            width: fit-content;
+            margin: auto;
+            margin-top: 150px;
+            padding: 150px;
+            background-color: rgb(145, 100, 189);
+            opacity: .95;
+            font-size: 16pt;
+            border-radius: 8px;
+        }
+
+
+        #right, #left{
+            padding: 60px;
+            border: 1px solid white;
+            border-radius: 8px;
+        }
+
+        input{
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            padding: 5px;
+        }
+        .Blue{
+            color:blue;
+        }
+        .Red {
+            color: red;
+        }
+        .Green{
+            color:green;
+        }
+        .big{
+            font-size: 28pt;
+        }
+
+        #bluebtn{
+            background-color: rgb(56, 105, 196);
+            box-shadow: 2px 2px 2px black;
+            cursor: pointer;
+        }
+        #bluebtn:active{
+            background-color: rgb(52, 94, 172);
+            box-shadow: none;
+        }
+        #redbtn{
+            background-color: rgb(216, 200, 54);
+            box-shadow: 2px 2px 2px black;
+            cursor: pointer;
+        }
+        #redbtn:active{
+            background-color: rgb(197, 182, 48);
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <img src="{% static 'words/images/blacknwhite.jpg' %}" alt=""> -->
+    <div class="container">
+        <div id="left">
+            <h1>Add a new word</h1>
+            <form action="/word" method="POST">
+                {% csrf_token %}
+                <input type="text" name="word">
+                <p>Choose a color</p>
+                <input type="radio" name="color" value="Red" checked="checked">Red
+                <input type="radio" name="color" value="Green">Green
+                <input type="radio" name="color" value="Blue">Blue
+                <input type="hidden" name="big" value="small">
+                <input type="checkbox" name="big" value="big">Show in BIG fonts!
+                <input id="bluebtn" type="submit" value="Add to Session">
+            </form>
+        </div>
+        <div id="right">
+            <form action="/clear" method="POST">
+                {% csrf_token %}
+                <input id="redbtn" type="submit" value="Clear Sesson">
+            </form>
+            {% for dict in request.session.words %}
+            <p><span class="{{ dict.color }} {{ dict.big }}" >{{ dict.word }}</span> - added on {{ request.session.time }}</p>
+            {% endfor %}
+            <!-- <p><span class="blue big">Rocks</span> - added on 9:15:13pm, June 5th 2017</p>
+            <p><span class="red">?</span> - added on 9:14:29pm, June 5th 2017</p>
+            <p><span class="green big">Rocks!</span> - added on 9:14:29pm, June 5th 2017</p> -->
+        </div>
+    </div>
+</body>
+
+</html>
