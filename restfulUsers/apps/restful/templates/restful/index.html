@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Semi-Restless Users</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Play|Rajdhani" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{% static 'restful/css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        {% for user in users %}
+        <div id='{{ user.firstName }}' class="modal">
+            <h6 id="close" class="redBtn {{ user.firstName }}">X</h6>
+            <h1>User {{ user.id }}</h1>
+            <p>Full Name:{{ user.firstName }} {{ user.lastName }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Created at: {{ user.created_at }}</p>
+            <p><a href="/edit">Edit</a>|<a href="">Delete</a></p>
+        </div>
+        {% endfor %}
+        <h1>Users</h1>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Created_at</th>
+                <th>Actions</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.firstName }} {{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>
+                    <form action="/processing" method="POST">
+                        {% csrf_token %}
+                        <input type="button" id="" name="action" class="redBtn show {{ user.lastName }}" value="Show">
+                        <input type="submit" name="action" class="redBtn" value="Edit">
+                        <input type="button" name="action" class="redBtn" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h4><a href="/add">Add a new user</a></h4>
+    </div>
+    <script>
+        $('document').ready(function () {
+            {% for user in users %}
+            $('.{{ user.lastName }}').on('click', function () {
+                $('#{{ user.firstName }}').show();
+            });
+            $('.{{ user.firstName }}').on('click', function () {
+                $('#{{ user.firstName }}').hide();
+            });
+            {% endfor %}
+
+        });
+    </script>
+</body>
+
+</html>
