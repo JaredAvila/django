@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <div class="container">
+        <div id="addCourse">
+            <h1>Add a new course</h1>
+            <form action="courses/processing" method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder='Name'>
+                <textarea name="desc" id="" cols="30" rows="10" placeholder="Descrtiption"></textarea>
+                <input id="sub" type='submit' value="Add">
+            </form>
+        </div>
+        {% for message in messages %}
+        <p style="padding-left: 50px; color: rgb(204, 25, 25); font-size: 14pt; font-weight: bold;">{{ message }}</p>
+        {% endfor %}
+        <div id="courseList">
+            <h1>Courses</h1>
+            <table>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.desc }}</td>
+                    <td>{{ course.created_at }}</td>
+                    <td><form action="courses/confirm" method="POST">
+                        {% csrf_token %}
+                        <input id="remove" type="submit" value="remove">
+                        <input type="hidden" name='id' value={{ course.id }}>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

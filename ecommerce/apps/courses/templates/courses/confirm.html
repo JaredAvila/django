@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sure?</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'courses/css/conf-style.css' %}">
+    <!-- <link rel="stylesheet" href="conf-style.css"> -->
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>Are you sure that you want to delete the following course?</h1>
+        <div id="container">
+            <form action="/courses" method="POST">
+                {% csrf_token %}
+                <input id="no" type="submit" value="No">
+            </form>
+            <form action="/courses/delete" method="POST">
+                {% csrf_token %}
+                <input id="yess" type="submit" value="Yes! I want to delete this">
+                <input type="hidden" name=id value={{ request.POST.id }}>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

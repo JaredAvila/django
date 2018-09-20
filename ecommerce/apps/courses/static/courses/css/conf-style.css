@@ -1,0 +1,44 @@
+body{
+    background-color: rgb(192, 156, 226);
+}
+#wrapper{
+    width: fit-content;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 60px;
+    background-color: rgb(31, 31, 31);
+    opacity: .94;
+    text-align: center;
+}
+
+#no, #yess{
+    padding: 10px;
+    font-size: 14pt;
+    border-radius: 8px;
+    border:none;
+    outline:none;
+    margin:10px;
+    font-weight: bold;
+    box-shadow: 2px 2px 2px black;
+    transition: box-shadow 150ms, background-color 150ms;
+}
+
+#container{
+    display: flex;
+    justify-content: center;
+}
+
+#yess{
+    background-color: rgb(180, 12, 12);
+    color: white;
+}
+
+#yess:active{
+    box-shadow: none;
+    background-color: rgb(153, 11, 11);
+}
+
+#no:active{
+    box-shadow: none;
+}
