@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon - Thanks!</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Nunito+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'amadon/css/confirm-style.css' %}">
+    <!-- <link rel="stylesheet" href="confirm-style.css"> -->
+</head>
+<body>
+    <div id='container'>
+        <img src="{% static 'amadon/images/pexels-photo-411586.jpeg' %}" alt="">
+        <div id="confirmation">
+            <h1>Thank you for coming!</h1>
+            <h4>We have reiceved your oder and have charged your card<br>{{ request.session.orderTotal }}</h4>
+            <h4>You have bought {{ request.session.totalItems }} of items from us and spent a total of<br>{{ request.session.totalSpent }}</h4>
+            <p><a href="/">Back</a></p>
+        </div>
+    </div>
+    <footer>&copy; 2018 | AvilaDesignUnlimited</footer>
+</body>
+</html>

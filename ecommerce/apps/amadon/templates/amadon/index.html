@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Nunito+Sans" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{% static 'amadon/css/style.css' %}">
+</head>
+
+<body>
+    <div id="wrapper">
+        <H1>Amadon.com</H1>
+        <div id="content">
+            <div class="items">
+                <img src="{% static 'amadon/images/Peace-Among-Worlds.png' %}" alt="">
+                <h3>{{ request.session.peaceName }}</h3>
+                <h5>Price</h5>
+                <p>${{ request.session.peacePrice }}</p>
+                <h6>Description</h6>
+                <p>{{ request.session.peaceDesc }}</p>
+                <form action="/checkout" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="vId" value="{{ request.session.peaceId }}">
+                    <label for="gty">Qty:</label>
+                    <select name="qty" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" value="BUY">
+                </form>
+            </div>
+            <div class="items">
+                <img src="{% static 'amadon/images/showmewhatyougot.png' %}" alt="">
+                <h3>{{ request.session.showName }}</h3>
+                <h5>Price</h5>
+                <p>${{ request.session.showPrice }}</p>
+                <h6>Description</h6>
+                <p>{{ request.session.showDesc }}</p>
+                <form action="/checkout" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="vId" value="{{ request.session.showId }}">
+                    <label for="gty">Qty:</label>
+                    <select name="qty" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" value="BUY">
+                </form>
+            </div>
+            <div class="items">
+                <img src="{% static 'amadon/images/scary-terry.png' %}" alt="">
+                <h3>{{ request.session.scaryName }}</h3>
+                <h5>Price</h5>
+                <p>${{ request.session.scaryPrice }}</p>
+                <h6>Description</h6>
+                <p>{{ request.session.scaryDesc }}</p>
+                <form action="/checkout" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="vId" value="{{ request.session.scaryId }}">
+                    <label for="gty">Qty:</label>
+                    <select name="qty" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" value="BUY">
+                </form>
+            </div>
+            <div class="items">
+                <img src="{% static 'amadon/images/shit.png' %}" alt="">
+                <h3>{{ request.session.mathName }}</h3>
+                <h5>Price</h5>
+                <p>${{ request.session.mathPrice }}</p>
+                <h6>Description</h6>
+                <p>{{ request.session.mathDesc }}</p>
+                <form action="/checkout" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="vId" value="{{ request.session.mathId }}">
+                    <label for="gty">Qty:</label>
+                    <select name="qty" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" value="BUY">
+                </form>
+            </div>
+            <div class="items">
+                <img src="{% static 'amadon/images/hungryforapples.png' %}" alt="">
+                <h3>{{ request.session.appleName }}</h3>
+                <h5>Price</h5>
+                <p>${{ request.session.applePrice }}</p>
+                <h6>Description</h6>
+                <p>{{ request.session.appleDesc }}</p>
+                <form action="/checkout" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="vId" value="{{ request.session.appleId }}">
+                    <label for="gty">Qty:</label>
+                    <select name="qty" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="submit" value="BUY">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
