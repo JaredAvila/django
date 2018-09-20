@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KitcheSink.com</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Righteous|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'theSink/css/style_home.css' %}">
+</head>
+
+<body>
+    <h5 id="plug"><span class="orangeSpan">K</span>itchen<span class="orangeSpan">S</span>ink.com</h5>
+    <div class="container">
+        <div id="head">
+            <h1 id="logo">KS</h1>
+            <h1 id="userName">Welcome <span class="orangeSpan">{{ request.session.userName }}!</span></h1>
+            <form id="navForm" action="" method="POST">
+                {% csrf_token %}
+                <input id="recipeBox" type="hidden" name='name' value="USER_NAME">
+                <input id="logout" type="button" value="RecipeBox ">
+            </form>
+            <form id="navForm" action="/logout" method="POST">
+                {% csrf_token %}
+                <input id="logout" type="hidden" name='USER TO LOG OUT' value="USER_ID_OR_HASH">
+                <input id="logout" type="submit" value="Logout">
+            </form>
+        </div>
+        <div id="createRecipe">
+            <h1>Creation is art</h1>
+            <form action="/validate/recipe" method="POST">
+                {% csrf_token %}
+                <input id="reicpeName" type="text" name="recipeName" placeholder="recipe name">
+                <textarea name="desc" cols="30" rows="10" placeholder="description"></textarea>
+                <textarea name="ingr" cols="30" rows="10" placeholder="ingridients"></textarea>
+                <textarea name="inst" cols="30" rows="10" placeholder="instructions"></textarea>
+                <input type="hidden" name="userName" value="{{ request.session.userName }}">
+                <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+                <input id="create" type="submit" class="btn" value="create">
+            </form>
+            <button id="createClose" class="close">X</button>
+        </div>
+        <div id="reviewRecipe">
+            <div class="recipe">
+                <h2>{{ request.session.userName }}'s reipe box</h2>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Under 30 min?</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for recipe in recipes %}
+                    <tr>
+                        <td>{{ recipe.name }}</td>
+                        <td>{{ reicpe.ingr }}</td>
+                        <td>{{ recipe.inst }}</td>
+                        <td>
+                            <form action="/recipe/view" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="name" value="{{ recipe.name }}">
+                                <input type="hidden" name="userName" value="{{ request.session.userName }}">
+                                <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+                                <input class="viewRec btn" type="submit" value="View Recipe">
+                            </form>
+                            <form action="/delete/recipe" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="name" value="{{ recipe.name }}">
+                                <input type="hidden" name="userName" value="{{ request.session.userName }}">
+                                <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+                                <input class="deleteRec btn" type="submit" value="Delete Recipe">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+            <button id="reviewClose" class="close">X</button>
+        </div>
+        <div id="showcase">
+            <form id="create" class="showForm" action="" method="POST">
+                {% csrf_token %}
+                <input id="creationBtn" class="btn" type="button" value="Create">
+            </form>
+            <form id="review" class="showForm" action="" method="POST">
+                {% csrf_token %}
+                <input id="reviewBtn" class="btn" type="button" value="My Sink">
+            </form>
+        </div>
+        <div id="wall">
+            <div id="wallRecipes">
+                {% for recipe in recipes %}
+                <div id="recipe">
+                    <img id='plates' src="{% static 'theSink/images/plates.png' %}" alt="">
+                    <div id="recipeDesc">
+                        <h3 id="recipName">{{ recipe.name }}</h3>
+                        <div class='recipeImg'>
+                            <img src="{% static 'theSink/images/cake-chocolate-chocolate-cake-132694.jpg' %}" alt="">
+                        </div>
+                        <p>
+                            <form action="/validate/likes" method="POST">
+                                {% csrf_token %}
+                                <button id="likeBtn" name='like' value='liked' type="button">
+                                    Like<i class="fas fa-heart"></i>
+                                </button>
+                            </form>
+                            <form action="/recipe/view" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="name" value="{{ recipe.name }}">
+                                <input id="wallView" class="btn" type="submit" value="view more">
+                                <input id="wallView" class="btn commentBtn" type="button" value="comment">
+                                <input type="hidden" name="userName" value="{{ request.session.userName }}">
+                                <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+                            </form>
+                            <form id="hiddenForm" action="/validate/comment" method="POST">
+                                {% csrf_token %}
+                                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                                <input type="hidden" name="name" value="{{ recipe.name }}">
+                                <input type="hidden" name="userName" value="{{ request.session.userName }}">
+                                <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+                                <input type="submit" id="wallView" class="btn" value="Submit">
+                            </form>
+                        </p>
+                    </div>
+                    <img id='plates' src="{% static 'theSink/images/plates2.png' %}" alt="">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'theSink/javascript/scripts.js' %}"></script>
+</body>
+
+</html>

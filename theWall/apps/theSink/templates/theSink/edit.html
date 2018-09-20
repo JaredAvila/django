@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Righteous|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'theSink/css/edit.css' %}">
+    <!-- <link rel="stylesheet" href="../static/edit.css"> -->
+</head>
+
+<body>
+    <div class="container">
+        <div id="head">
+            <h1 id="logo">BR</h1>
+            <h1 id="userName">Welcome <span class="orangeSpan">{{ request.session.userName }}!</span></h1>
+            <form action="/home" method="POST">
+                {% csrf_token %}
+                <input id="logout" type="submit" value="Home">
+            </form>
+            <form action="/logout" method="POST">
+                {% csrf_token %}
+                <input id="logout" type="hidden" name='USER TO LOG OUT' value="USER_ID_OR_HASH">
+                <input id="logout" type="submit" value="Logout">
+            </form>
+        </div>
+        <div id="recipeBox">
+            <h1 id="recipeName">Instructions for <span class="orangeSpan">{{ request.session.recipeViewName }}</span></h1>
+            <form action="/editting/recipe" method="POST">
+                {% csrf_token %}
+                <h6 class="recipeBold">Description:</h6>
+                <input name="desc" class="edit" type=text value="{{ request.session.recipeViewDesc }}">
+                <h6 class="recipeBold">Ingridients:</h6>
+                <textarea name='ingr'cols="30" rows="10">{{ request.session.recipeViewIngr }}</textarea><br>
+                <h6 class="recipeBold">Instructions:</h6>
+                <textarea name='inst'cols="30" rows="10">{{ request.session.recipeViewInst }}</textarea><br>
+                <input class="viewRec btn" type="submit" value="Save" style="margin-bottom: 20px;">
+                <input type="hidden" name="name" value={{ request.session.recipeViewName }}>
+                <input type="hidden" name="userName" value="{{ request.session.userName }}">
+                <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+            </form>
+    </div>
+    <script src="{% static 'theSink/css/scripts.js' %}"></script>
+    <!-- <script src="../static/scripts.js"></script> -->
+</body>
+
+</html>

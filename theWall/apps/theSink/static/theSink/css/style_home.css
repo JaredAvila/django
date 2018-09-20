@@ -1,0 +1,393 @@
+*{
+    margin: 0;
+    padding: 0;   
+    cursor: default;
+}
+
+input, button, i{
+    cursor: pointer;
+}
+
+.btn{
+    padding: 10px 30px;
+    border-radius: 25px;
+    border:none;
+    outline:none;
+    font-size: 16pt;
+    box-shadow: 3px 3px 10px black;
+    transition: box-shadow .2s, background-color .5s;
+}
+
+body{
+    background: url(/static/theSink/images/appetizer-dark-delicious-326279.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-family: 'Varela Round', sans-serif;
+}
+.container{
+    padding: 50px;
+    text-align: center;
+    background-color: rgb(49, 49, 49);
+    opacity: .9;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 25px;
+}
+
+h5#plug{
+    padding: 0;
+    margin: 0;
+    font-size: 10pt;
+    letter-spacing: 10px;
+    margin: auto;
+    width:fit-content;
+    background-color: rgb(49, 49, 49);
+    border-radius: 25px;
+    padding: 5px;
+    border: 2px solid rgb(17, 17, 17);
+}
+
+h5#plug span{
+    font-family: 'Righteous', cursive;
+}
+
+span.orangeSpan{
+    color:#da8943;
+}
+
+#head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+h1#logo{
+    color:#da8943;
+    font-size: 48pt;
+    font-family: 'Righteous', cursive;
+    padding: 0;
+    margin: 0;
+    border: 20px solid rgb(17, 17, 17);
+    border-radius: 50%;
+}
+
+#head h1#userName{
+    border: 3px solid rgb(204, 203, 203);
+    border-radius: 25px;
+    padding: 10px;
+    color: rgb(204, 203, 203);
+    background-color: rgb(17, 17, 17);
+    margin-right: auto;
+    margin-left: 30px;
+    align-self: flex-end;
+}
+
+input#logout{
+    color: rgb(204, 203, 203);
+    font-size: 15pt;
+    background-color:transparent;
+    border:none;
+    outline:none;
+    transition: color .5s;
+}
+input#logout:hover{
+    color:#da8943;
+}
+
+#showcase{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.showForm{
+    padding: 50px;
+}
+
+.showForm input:active{
+    box-shadow: none;
+}
+
+#create input{
+    background-color:#da8943;
+    color: rgb(204, 203, 203);
+    transition: background-color 150ms;
+}
+#create input:active{
+    background-color:#ce7e38;
+}
+
+#review input{
+    color:#da8943;
+    background-color: rgb(204, 203, 203);
+    transition: background-color 150ms; 
+}
+#review input:active{
+    background-color: rgb(179, 179, 179);
+}
+
+#faves{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.fav{
+    background-color: rgb(17, 17, 17);
+    padding: 50px;
+    border-radius: 25px;
+    width: fit-content;
+    margin: auto;
+}
+
+.fav h3{
+    color: #da8943;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgb(204, 203, 203);
+}
+
+.fav p {
+    color: rgb(204, 203, 203);
+    margin-bottom: 30px;
+}
+
+#likeBtn{
+    border: none;
+    background-color: rgb(17, 17, 17);
+    outline:none;
+    color: rebeccapurple;
+    padding: 20px;
+}
+
+form{
+    color: rgb(204, 203, 203);
+}
+
+#createRecipe{
+    display: none;
+    position: absolute;
+    width: 50%;
+    left:25%;
+    background-color: black;
+    border-radius: 25px;
+    padding: 30px;
+    z-index: 1;
+}
+
+#createRecipe form{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin:auto;
+}
+
+#createRecipe form input, #createRecipe textarea{
+    margin: 10px;
+    border-radius: 25px;
+    border:none;
+    padding: 15px;
+    outline:none;
+    background-color: rgb(204, 203, 203);
+}
+
+#createRecipe h1{
+    color: black;
+    background-color:#da8943;
+    padding: 10px;
+    border: 1px solid rgb(204, 203, 203);
+    border-radius: 25px;
+    font-family: 'Righteous', cursive;
+    letter-spacing: 35px;
+    text-shadow: 2px 2px 2px rgb(61, 60, 60);
+}
+
+#createRecipe form input:focus, #createRecipe textarea:focus{
+    background-color:rgb(248, 223, 185);
+}
+input#create.btn{
+    background-color: rgb(204, 203, 203);
+}
+
+input#create.btn:hover{
+    background-color:#eb8831;
+}
+
+input#create.btn:active{
+    box-shadow: none;
+}
+
+h2{
+    margin-bottom: 30px;
+}
+
+#reviewRecipe{
+    display: none;
+    position: absolute;
+    width: 50%;
+    left:25%;
+    background-color: black;
+    border-radius: 25px;
+    padding: 30px;
+    z-index: 1;
+}
+
+.recipe{
+    background-color: #da8943;
+}
+
+.recipe tr th{
+    background-color: rgb(204, 203, 203);
+}
+
+.recipe input{
+    padding: 5px;
+    border-radius: 25px;
+    border:none;
+    outline:none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #7a7a7a;
+}
+
+input.deleteRec{
+    font-size: 12pt;
+    background-color:rgb(161, 28, 28);
+    transition: background-color .5s, box-shadow .2s;
+}
+input.deleteRec:active{
+    background-color:rgb(129, 22, 22);
+    box-shadow: none;
+}
+input.viewRec{
+    font-size: 12pt;
+    background-color:rgb(40, 94, 40);
+    transition: background-color .5s, box-shadow .2s;
+}
+input.viewRec:active{
+    background-color:rgb(31, 71, 31);
+    box-shadow: none;
+}
+
+.close{
+    padding: 5px;
+    border-radius: 30%;
+    border:none;
+    outline:none;
+}
+
+#recipeBox h6{
+    margin-bottom: 15px;
+    color: #da8943;
+    font-size: 16pt;
+}
+
+#recipeBox h1{
+    font-size: 28pt;
+    margin-bottom: 40px;
+}
+
+#recipeBox h1 span{
+    font-family: 'Righteous', cursive;
+}
+
+#recipeBox p{
+    color: white;
+    line-height: 25px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-size: 12pt;
+}
+
+input#logout{
+    margin-left: 20px;
+}
+
+#wall{
+    width: 90%;
+    height: 700px;
+    position: relative;
+    background-color: rgb(17, 17, 17);
+    border-radius: 8px;
+    margin: auto;
+}
+
+#wallRecipes{
+    max-height: 100%;
+    overflow: auto;
+}
+
+.recipeImg img{
+    height: 207px;
+}
+
+input#wallView{
+    text-align: center;
+    background-color: #da8943;
+    color: rgb(204, 203, 203);
+    box-shadow: 2px 2px 2px black;
+    transition: background-color 150ms, box-shadow 150ms;
+}
+
+#wallView:active{
+    box-shadow: none;
+}
+
+#plates{
+    display: inline-block;
+}
+#plates{
+    width: 120px;
+    margin: 0 80px;
+    opacity: .95;
+}
+
+#recipeDesc{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#hiddenForm{
+    display: none;
+    width: 280px;
+    margin: auto;
+}
+
+#hiddenForm textarea{
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    background-color:rgb(204, 203, 203);
+}
+
+#hiddenForm textarea:focus{
+    background-color: white;
+}
+
+#recipName{
+    background-image: linear-gradient(rgb(161, 103, 48), rgb(109, 71, 35), rgb(161, 103, 48)) ;
+    color: black;
+    padding: 15px 0;
+}
+
+p#comment{
+    color: rgb(17, 17, 17);
+    background-color: rgb(160, 223, 148);
+    margin-top: 30px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    width: 250px;
+    margin: auto;
+    text-align: left;
+    border-radius: 10px;
+}
+
+#deleteComment{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

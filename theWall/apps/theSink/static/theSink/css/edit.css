@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;   
+    cursor: default;
+}
+
+input, button, i{
+    cursor: pointer;
+}
+
+body{
+    background: url(/static/theSink/images/appetizer-dark-delicious-326279.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-family: 'Varela Round', sans-serif;
+}
+.container{
+    padding: 50px;
+    text-align: center;
+    background-color: rgb(49, 49, 49);
+    opacity: .9;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 25px;
+}
+.btn{
+    padding: 10px 30px;
+    border-radius: 25px;
+    border:none;
+    outline:none;
+    font-size: 16pt;
+    box-shadow: 3px 3px 10px black;
+    transition: box-shadow .2s, background-color .5s;
+}
+input.viewRec{
+    font-size: 12pt;
+    background-color:rgb(40, 94, 40);
+    transition: background-color .5s, box-shadow .2s;
+}
+input.viewRec:active{
+    background-color:rgb(31, 71, 31);
+    box-shadow: none;
+}
+
+span.orangeSpan{
+    color:#da8943;
+    font-family: 'Righteous', cursive;
+}
+
+#head{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#logo{
+    color:#da8943;
+    font-size: 48pt;
+    font-family: 'Righteous', cursive;
+    padding: 0;
+    margin: 0;
+    border: 20px solid rgb(17, 17, 17);
+    border-radius: 50%;
+}
+
+#head h1#userName{
+    border: 3px solid rgb(204, 203, 203);
+    border-radius: 25px;
+    padding: 10px;
+    color: rgb(204, 203, 203);
+    background-color: rgb(17, 17, 17);
+    margin-right: auto;
+    margin-left: 30px;
+    align-self: flex-end;
+}
+
+#logout{
+    color: rgb(204, 203, 203);
+    font-size: 15pt;
+    background-color:transparent;
+    border:none;
+    outline:none;
+    margin-left: 20px;
+    transition: color .5s;
+}
+#logout:hover{
+    color:#da8943;
+}
+h6{
+    color: #da8943;
+    font-size: 12pt;
+    margin-bottom: 10px;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+.edit{
+    padding: 20px;
+    margin: 20px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+textarea{
+    border-radius: 25px;
+    padding: 15px;
+    margin-top: 10px;
+}

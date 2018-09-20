@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Righteous|Varela+Round" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../static/style_home.css"> -->
+    <link rel="stylesheet" href="{% static 'theSink/css/style_home.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div id="head">
+            <h1 id="logo">KS</h1>
+            <h1 id="userName">Welcome <span class="orangeSpan">{{ request.session.userName }}!</span></h1>
+            <form action="/home" method="POST">
+                {% csrf_token %}
+                <input id="logout" type="submit" value="Home">
+            </form>
+            <form action="/logout" method="POST">
+                {% csrf_token %}
+                <input id="logout" type="hidden" name='USER TO LOG OUT' value="{{ request.session.userName }}">
+                <input id="logout" type="submit" value="Logout">
+            </form>
+        </div>
+        <div id="recipeBox">
+            <h1 id="recipeNamex/">Instructions for <span class="orangeSpan">{{ request.session.recipeViewName }}</span></h1>
+            <div>
+                <h6 class="recipeBold">Description:</h6>
+                <p>{{ request.session.recipeViewDesc }}</p>
+            </div>
+            <div>
+                <h6 class="recipeBold">Ingridients</h6>
+                <p>{{ request.session.recipeViewIngr }}</p>
+            </div>
+            <div id="instruc">
+                <h6 class="recipeBold">Direction:</h6>
+                <p>{{ request.session.recipeViewInst }}</p>
+            </div>
+            {% for comment in comments %}
+            <p id="comment">{{ comment.comment }}</p>
+            <form action="/delete/comment" method="POST">
+                {% csrf_token %}
+                <input id="deleteComment" class="deleteRec btn" type="submit" value="delete">
+                <input type="hidden" name="id" value="{{ comment.id }}">
+                <input type="hidden" name="userName" value="{{ request.session.userName }}">
+                <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+            </form>
+            {% endfor %}
+        </div>
+        <form action="/validate/comment" method="POST">
+            {% csrf_token %}
+            <textarea name="comment" cols="30" rows="10"></textarea><br>
+            <input class="viewRec btn" type="submit" value="Comment" style="margin-bottom: 20px;">
+            <input type="hidden" name='name' value="{{ request.session.recipeViewName }}">
+            <input type="hidden" name="userName" value="{{ request.session.userName }}">
+            <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+        </form>
+        <form action="/edit/recipe" method="POST">
+            {% csrf_token %}
+            <input class="viewRec btn" type="submit" value="Edit" style="margin-bottom: 20px;">
+            <input type="hidden" name='name' value="{{ request.session.recipeViewName }}">
+            <input type="hidden" name="userName" value="{{ request.session.userName }}">
+            <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+        </form>
+        <form action="/delete/recipe" method="POST">
+            {% csrf_token %}
+            <input class="deleteRec btn" type="submit" value="delete">
+            <input type="hidden" name="name" value="{{ request.session.recipeViewName }}">
+            <input type="hidden" name="userName" value="{{ request.session.userName }}">
+            <input type="hidden" name="hashId" value="{{ request.session.hashId }}">
+        </form>
+    </div>
+    <!-- <script src="../static/scripts.js"></script> -->
+    <script src="{% static 'theSink/javascript/scripts.js' %}"></script>
+</body>
+
+</html>
