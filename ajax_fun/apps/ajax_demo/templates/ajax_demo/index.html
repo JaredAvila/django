@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'ajax_demo/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<body>
+    <div id="container">
+        <h1>Demo #1 - Ajax: JSON vs HTML</h1>
+        <button id="JSON" class="bttn purpleBttn">JSON</button>
+        <button id="HTML" class="bttn aquaBttn" id="html">HTML</button>
+        <div id="placeholder" class="places">Something will go here instead of this text</div>
+    </div>
+
+
+    <div id="container">
+        <h1>Demo #2 - Ajax Form</h1>
+        <form action="ajax_demo/find" class="ajax_form">
+            find all users whose first name starts width
+            {% csrf_token %}
+            <input class="inputs" type="text" name="fNameStartsWith" id="fNameAjax">
+        </form>
+        <div id="placeholder1" class="places">
+            placeholder for the Ajax form
+        </div>
+    </div>
+
+    <div id="container">
+        <h1>Demo #3 - Ajax Form II</h1>
+        <form action="/create" method="POST" class="ajax_form" id="createUser">
+            {% csrf_token %}
+            <input class="inputs" type="text" name="fName" placeholder="First Name" id="">
+            <input class="inputs" type="text" name="lName" placeholder="Last Name" id="">
+            <input class="inputs" type="text" name="email" placeholder="Email" id="">
+            <input class="bttn purpleBttn" type="submit" value='Submit' name="" id="">
+        </form>
+
+        <div id="placeholder2" class="places">
+            placeholder for Ajax Form part II
+        </div>
+    </div>
+
+    <script>
+
+        $('document').ready(function () {
+            $('#JSON').click(function () {
+                $.ajax({
+                    url: '/all.json',
+                    success: function (serverResponse) {
+                        console.log('recieved this from the server', serverResponse)
+                        console.log('Now, i can use the serverResponse to manipulate the DOM')
+                        $('#placeholder').html(JSON.stringify(serverResponse))
+                    }
+                })
+            });
+            $('#HTML').click(function () {
+                $.ajax({
+                    url: '/all.html',
+                    success: function (serverResponse) {
+                        console.log('recieved this from the server', serverResponse)
+                        console.log('Now, i can use the serverResponse to manipulate the DOM')
+                        $('#placeholder').html(serverResponse)
+                    }
+                })
+            })
+            $('.ajax_form').submit(function(e){
+                e.preventDefault()
+            })
+            $('#fNameAjax').keyup(function(){
+                $.ajax({
+                    url: '/find',
+                    method: 'post',
+                    data: $(this).parent().serialize(),
+                    success: function(serverResponse){
+                        $('#placeholder1').html(serverResponse)
+                    }
+                })
+            })
+            $('#createUser').submit(function(e){
+                e.preventDefault()
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: 'post',
+                    data: $(this).serialize(),
+                    success: function(serverResponse){
+                        $('#placeholder2').html(serverResponse)
+                    }
+                })
+            })
+        });
+
+    </script>
+
+</body>
+
+</html>
