@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="{% static 'books/javascript/stars.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Notable" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'books/css/books.css' %}">
+</head>
+
+<body>
+    <div id="addBook">
+        <h3>Add a new book and write a review!</h3>
+        <form action="/books/validateBookReview" method="POST">
+                {% csrf_token %}
+            <input type="text" name="title" placeholder="Title of book">
+            <select id="authorSel" name="author">
+                <option value="None">Name of Author</option>
+                <option value="None">William Shakespeare</option>
+                <option value="None">Edgar Allen Poe</option>
+                <option value="None">Douglas Adams</option>
+                <option value="None">Dan Brown</option>
+                <option value="None">George Orwell</option>
+                <option value="None">Dean Koontz</option>
+                <option value="None">J.R.R. Tolkein</option>
+                <option value="None">George R.R. Martin</option>
+            </select>
+            <input type="text" name="author" placeholder="or add a new author">
+            <label for="select">Rating:</label>
+            <select id="ratingSel" name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <textarea name="review" id="" cols="30" rows="10" placeholder="Review"></textarea>
+            <button class="bttn bttnGreen" type="submit" style="width: 70%; margin-left: 10px;">Add Book and Review</button>
+        </form>
+        <button id="close" class="bttn bttnRed" style="margin-left: 10px; margin-top: 10px;">Close</button>
+    </div>
+    <div id="header">
+        <a class="bttn bttnGreen" style="text-decoration: none; color: white;" href="/books">
+            <p>Home</p>
+        </a>
+        <div id="bookHeader" style='border: 2px solid black; padding: 0 10px; border-radius: 8px;'>
+            <h1 style='color:rgb(37, 112, 250); text-shadow: 2px 2px 2px black;'>{{ request.session.bookTitle }}</h1>
+            <p style="margin-left:15px; padding: 15px">Author: <span style="font-weight:bold;">{{ request.session.bookAuthor }}</span></p>
+        </div>
+        <div id="headerLinks">
+            <a id="addBookBtn">
+                <p class="bttn bttnBlue">Add Book and Review</p>
+            </a>
+            <a href="/books/logout">
+                <p class="bttn bttnBlue">Logout</p>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div id="top3">
+            <h1>Reviews:</h1>
+            {% for review in reviews %}
+            <div class='recentRev'>
+                <p>Rating:</p>
+                <div class="{{ review.id }}"></div>
+                <p><a class='userRev' href="/books/show/{{ review.user_id.id }}">{{ review.user_id.fName }}:</a> {{ review.review }}</p>
+                <a class="bttn delete{{ review.user_id.id }}" style='display: none; color: red;' href="/books/book/{{ review.book_id.id }}/delete"><p>Delete</p></a>
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="othersBook">
+            <h3>Write a new review for this book:</h3>
+            <form action="/books/validateReview" method="POST">
+                    {% csrf_token %}
+                <label for="select">Rating:</label>
+                <select id="ratingSel" name="rating" class="bttn" style="width: 70px;">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select><br>
+                <textarea name="review" id="" cols="30" rows="10" placeholder="Review"></textarea>
+                <button class="bttn bttnGreen" type="submit" style="width: 50%; margin-left: 10px;">Add Book and Review</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(".demo").stars({ text: ["Bad", "Not so bad", "hmmm", "Good", "Perfect"] });1
+        $(".more-stars").stars({ stars: 20 });
+        $(".font-size").stars();
+        {% for review in reviews %}
+            $(".{{ review.id }}").stars({ value:{{ review.rating }}});
+            {% if review.user_id.id == request.session.id %}
+                $(".delete{{ review.user_id.id }}").show()
+            {% endif %}
+        {% endfor %}
+        $(".green-color").stars({ color: '#73AD21' });
+        $(".icon-change").stars({
+            emptyIcon: 'fa-thumbs-o-up',
+            filledIcon: 'fa-thumbs-up'
+        });
+        $(".text").stars({
+            text: ["1 star", "2 star", "3 star", "4 star", "5 star"]
+        });
+        $(".click-callback").stars({
+            click: function (i) {
+                alert("Star " + i + " selected.");
+            }
+        });
+        $('#addBookBtn').on('click', function () {
+            $('#addBook').show()
+        })
+        $('#close').on('click', function () {
+            $('#addBook').hide()
+        })
+    </script>
+</body>
+
+</html>

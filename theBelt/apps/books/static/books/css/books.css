@@ -1,0 +1,250 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background: url('../images/cloud.jpg');
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bttn{
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14pt;
+    outline: none;
+}
+
+.bttnBlue{
+    background-color: #799dd0;
+    border-top: 2px solid #c0d7f7;
+    border-left: 2px solid #c0d7f7;
+    border-bottom: 2px solid #4972aa;
+    border-right: 2px solid #4972aa;
+}
+
+.bttnBlue:active{
+    border-bottom: 2px solid #c0d7f7;
+    border-right: 2px solid #c0d7f7;
+    border-top: 2px solid #4972aa;
+    border-left: 2px solid #4972aa;
+}
+
+.bttnRed{
+    background-color: #f52e14;
+    border-top: 2px solid #ff8878;
+    border-left: 2px solid #ff8878;
+    border-bottom: 2px solid #b32411;
+    border-right: 2px solid #b32411;
+}
+
+.bttnRed:active{
+    border-bottom: 2px solid #ff8878;
+    border-right: 2px solid #ff8878;
+    border-top: 2px solid #b32411;
+    border-left: 2px solid #b32411;
+}
+
+.bttnGreen{
+    background-color: #19be59;
+    border-top: 2px solid #5df196;
+    border-left: 2px solid #5df196;
+    border-bottom: 2px solid #12863f;
+    border-right: 2px solid #12863f;
+}
+
+.bttnGreen:active{
+    border-bottom: 2px solid #5df196;
+    border-right: 2px solid #5df196;
+    border-top: 2px solid #12863f;
+    border-left: 2px solid #12863f;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    padding: 50px 70px;
+    border-radius: 10px;
+    background-color: silver;
+    opacity: .93;
+    box-shadow: 3px 3px 8px black;
+}
+
+#header{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+}
+
+#header h1{
+    font-family: 'Notable', sans-serif;
+}
+
+#headerLinks p{
+    display: inline-block;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+#headerLinks a{
+    text-decoration: none;
+    color: white;
+    
+}
+
+#top3{
+    width: 35%;
+    background-color: #8ccbffcc;
+    border-radius: 6px;
+    padding: 20px;
+    opacity: .90;
+    border: 2px outset rgb(170, 168, 168);
+    max-height:100%;
+    overflow:auto;
+}
+
+.recentRev{
+    margin-bottom: 25px;
+}
+
+.userRev{
+    font-weight: bold;
+    font-size: 14pt;
+    text-decoration: none;
+}
+
+#others{
+    width: 35%;
+}
+
+#div1{
+    position:relative;
+}
+
+#div2{
+    max-height:100%;
+    overflow:auto;
+    background-color: rgb(253, 253, 253);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+#div3{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-size: 14pt;
+    height:300px;
+}
+
+#div3 a{
+    margin-bottom: 18px;
+    color: rgb(49, 102, 250);
+    font-weight: bold;
+}
+
+#others h2{
+    margin-bottom: 20px;
+}
+
+#addBook{
+    display: none;
+    background-color: rgb(54, 54, 54);
+    box-shadow: 4px 4px 10px black;
+    width: fit-content;
+    padding: 50px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 6px;
+    top: 10%;
+    left: 30%;
+}
+
+#addBook form{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+#addBook form input, #addBook form select, textarea{
+    margin: 10px;
+    font-size: 14pt;
+    padding: 10px;
+    border-radius: 8px;
+    border:none;
+    outline: none;
+    width: 200px;
+    background-color: rgb(233, 233, 233);
+}
+
+#addBook form input:focus,#addBook form select:focus, textarea:focus, select:focus{
+    box-shadow: 0px 0px 10px rgb(6, 205, 255);
+    background-color: white;
+}
+
+#addBook h3{
+    font-size: 30pt;
+    color: rgb(233, 233, 233);
+    border-bottom: 15px double white;
+    margin-bottom: 20px;
+}
+
+textarea{
+    width:300px;
+}
+
+form select#ratingSel{
+    width: 50px;
+}
+
+select#authorSel{
+    width: 100px;
+}
+
+#bookHeader{
+    display: flex;
+}
+
+#bookHeader a{
+    margin-right: 100px;
+}
+
+#othersBook h3{
+    color: rgb(49, 102, 250);
+    text-shadow: 1px 1px 2px black;
+    margin-bottom: 15px;
+}
+
+#userPage{
+    padding: 50px;
+    font-size: 14pt;
+}
+
+#userInfo{
+    margin-bottom: 30px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+span#blueSpan{
+    color: rgb(30, 109, 255);
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+#postedReviews h3{
+    color: white;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+}
+
+#postedReviews a{
+    color: rgb(30, 109, 255);
+    text-decoration: none;
+}
+
