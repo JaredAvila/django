@@ -19,6 +19,7 @@ SECRET_KEY = 'wheresthebeef?'
 # Application definition
 
 INSTALLED_APPS = [
+    'apps.post',
     'apps.ajax_demo',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,0 +1,33 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.container{
+    background-color: rgb(148, 148, 148);
+    padding: 50px;
+    font-family: 'Indie Flower', cursive;
+}
+
+#posts{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.post{
+    margin: 10px;
+    padding: 10px;
+    font-size: 15pt;
+    background-color: rgb(206, 224, 42);
+    height: 260px;
+    width: 240px;
+    border-radius: 2px;
+    box-shadow: 2px 2px 3px black;
+}
+
+.create{
+    background-color: rgb(80, 80, 173);
+    padding: 20px;
+    width: fit-content;
+    border-radius: 2px;
+}

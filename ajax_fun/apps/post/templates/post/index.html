@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'post/css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ajax Post App</h1>
+        <div id="posts">
+
+            {% for note in notes %}
+            <div class="post">{{ note.note }}</div>
+            {% endfor %}
+
+        </div>
+        <div class="create">
+            <form id="postIt" action="/post/validate" method="POST">
+                {% csrf_token %}
+                <label for="note">Add a note:</label><br>
+                <textarea name="note" id="" cols="30" rows="10" placeholder="enter note here"></textarea><br>
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <script>
+
+        $('#postIt').submit(function (e) {
+            e.preventDefault()
+            $.ajax({
+                url: $(this).attr('action'),
+                method: 'post',
+                data: $(this).serialize(),
+                success: function (serverResponse) {
+                    $('#posts').html(serverResponse)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
